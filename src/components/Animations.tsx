@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useInView, useSpring, useMotionValue, useTransform, animate } from "framer-motion";
+import { motion, useInView, useSpring, useMotionValue, animate } from "framer-motion";
 import { useRef, useEffect, useState, type ReactNode, type MouseEvent } from "react";
 
 /* ─── Fade-slide-up on scroll ─── */
@@ -166,6 +166,8 @@ export function CountUp({
 }
 
 /* ─── Parallax image ─── */
+import Image from "next/image";
+
 export function ParallaxImage({
   src,
   alt,
@@ -196,13 +198,16 @@ export function ParallaxImage({
   }, [speed, y]);
 
   return (
-    <div ref={ref} className={`overflow-hidden ${className}`}>
-      <motion.img
-        src={src}
-        alt={alt}
-        style={{ y }}
-        className="w-full h-[120%] object-cover"
-      />
+    <div ref={ref} className={`overflow-hidden relative ${className}`}>
+      <motion.div style={{ y }} className="w-full h-[120%] relative">
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          className="object-cover"
+          sizes="(max-width: 768px) 100vw, 33vw"
+        />
+      </motion.div>
     </div>
   );
 }

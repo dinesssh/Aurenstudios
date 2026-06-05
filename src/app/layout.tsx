@@ -15,12 +15,24 @@ export const metadata: Metadata = {
     url: "https://dinesssh.github.io/agency",
     siteName: "AurenStudio",
     locale: "en_IN",
-    type: "website"
+    type: "website",
+    images: [
+      {
+        url: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=630&fit=crop",
+        width: 1200,
+        height: 630,
+        alt: "AurenStudio Digital Marketing Agency",
+      }
+    ]
   },
   twitter: {
     card: "summary_large_image",
     title: "AurenStudio — Digital Marketing Agency, Madurai",
-    description: "Instagram ads, websites & SEO for local businesses. Starting ₹8,000/month."
+    description: "Instagram ads, websites & SEO for local businesses. Starting ₹8,000/month.",
+    images: ["https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=630&fit=crop"]
+  },
+  icons: {
+    icon: "/favicon.ico",
   }
 };
 

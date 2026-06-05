@@ -1,9 +1,9 @@
 import type { NextConfig } from "next";
 
 const isGithubActions = process.env.GITHUB_ACTIONS || false;
-let repo = 'agency';
-let assetPrefix = '';
-let basePath = '';
+const repo = "agency";
+let assetPrefix = "";
+let basePath = "";
 
 if (isGithubActions) {
   assetPrefix = `/${repo}/`;
@@ -11,11 +11,11 @@ if (isGithubActions) {
 }
 
 const nextConfig: NextConfig = {
-  output: "export",
+  ...(isGithubActions ? { output: "export" } : {}),
   basePath: basePath,
   assetPrefix: assetPrefix,
   images: {
-    unoptimized: true,
+    unoptimized: !!isGithubActions,
   },
   turbopack: {
     root: ".",
