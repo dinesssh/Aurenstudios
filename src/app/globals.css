@@ -3,20 +3,21 @@
 
 @theme {
   --font-sans: var(--font-inter), system-ui, sans-serif;
-  --font-display: var(--font-space), system-ui, sans-serif;
+  --font-display: var(--font-inter), system-ui, sans-serif;
 }
 
 :root {
   --accent: #ff4d00;
-  --accent2: #ff6b35;
+  --accent2: #e04400;
+  --bg-primary: #080808;
+  --bg-secondary: #0f0f0f;
 }
-
 
 html { scroll-behavior: smooth; }
 
 html, body {
-  background-color: #080808 !important;
-  color: #ffffff;
+  background-color: var(--bg-primary) !important;
+  color: #888888;
   min-height: 100vh;
   width: 100%;
   overflow-x: hidden;
@@ -24,8 +25,13 @@ html, body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  line-height: 1.75;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  color: #ffffff;
+  font-family: var(--font-sans);
+}
 
 ::selection {
   background: rgba(255, 77, 0, 0.3);
@@ -33,36 +39,95 @@ html, body {
 }
 
 .gradient-text {
-  background: linear-gradient(135deg, #ff4d00, #ff6b35);
+  background: linear-gradient(135deg, #ffffff, #888888);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-.font-display {
-  font-family: var(--font-display);
+.gradient-orange {
+  background: linear-gradient(135deg, #ff4d00, #e04400);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-/* Reliable centering container — used by every section */
+/* Typography Utility Classes */
+.heading-primary {
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.heading-sub {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.label-small {
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 11px;
+  color: var(--accent);
+}
+
+/* Buttons */
+.btn-primary {
+  background-color: var(--accent);
+  color: #ffffff;
+  padding: 1rem 2rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn-primary:hover {
+  background-color: var(--accent2);
+  transform: scale(1.02);
+}
+
+.btn-secondary {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  padding: 1rem 2rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn-secondary:hover {
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.btn-small {
+  padding: 0.625rem 1.25rem;
+  font-size: 0.875rem;
+}
+
+/* Cards */
+.premium-card {
+  background-color: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 16px;
+  transition: all 0.25s ease;
+}
+.premium-card:hover {
+  border-color: rgba(255, 77, 0, 0.25);
+  transform: translateY(-3px);
+}
+
+/* Reliable centering container */
 .cx {
   width: 100%;
-  max-width: 1280px;
+  max-width: 1152px;
   margin-left: auto;
   margin-right: auto;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
-}
-
-/* Ticker */
-.ticker-track {
-  display: flex;
-  animation: tickScroll 40s linear infinite;
-}
-.ticker-track:hover { animation-play-state: paused; }
-
-@keyframes tickScroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
 }
 
 /* Scrollbar */

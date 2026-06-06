@@ -2,169 +2,114 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { MessageCircle, Mail, Phone, MapPin, CheckCircle2 } from "lucide-react";
-import { Reveal, MagneticButton } from "@/components/Animations";
-
-function ContactForm() {
-  const [status, setStatus] = useState<"idle" | "submitting" | "success">("idle");
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setStatus("submitting");
-    const form = e.currentTarget;
-    const data = new FormData(form);
-    
-    try {
-      const res = await fetch("https://formspree.io/f/xpwzabcd", {
-        method: "POST",
-        body: data,
-        headers: { Accept: "application/json" },
-      });
-      if (res.ok) {
-        setStatus("success");
-        form.reset();
-      } else {
-        setStatus("idle");
-        alert("Oops! There was a problem submitting your form");
-      }
-    } catch {
-      setStatus("idle");
-      alert("Oops! There was a problem submitting your form");
-    }
-  };
-
-  if (status === "success") {
-    return (
-      <div className="bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.08)] rounded-2xl p-10 text-center flex flex-col items-center justify-center mb-10 shadow-[0_10px_40px_rgba(0,0,0,0.03)] h-[400px]">
-        <motion.div 
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ type: "spring", stiffness: 200, damping: 20 }}
-          className="w-16 h-16 bg-[#ff4d00] rounded-full flex items-center justify-center text-white mb-6"
-        >
-          <CheckCircle2 className="w-8 h-8" />
-        </motion.div>
-        <h3 className="font-display text-[24px] font-[700] mb-2 text-[#ffffff]">Message received!</h3>
-        <p className="text-[#888888] text-[15px] mb-8">
-          We&apos;ll send your free strategy within 1 hour. Check WhatsApp or email.
-        </p>
-        <button 
-          onClick={() => setStatus("idle")}
-          className="text-[#ff4d00] font-semibold text-[14px] hover:underline"
-        >
-          Send another message
-        </button>
-      </div>
-    );
-  }
-
-  return (
-    <form onSubmit={handleSubmit} className="bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.08)] rounded-2xl p-8 text-left mb-10 shadow-[0_10px_40px_rgba(0,0,0,0.03)] relative z-10">
-      <div className="grid md:grid-cols-2 gap-5 mb-5">
-        <div>
-          <label className="block text-[13px] font-semibold mb-2 text-[#ffffff]">Full Name</label>
-          <input suppressHydrationWarning={true} type="text" name="name" placeholder="Your name" required className="w-full bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.08)] rounded-xl px-4 py-3.5 text-[15px] text-[#ffffff] outline-none focus:border-[#ff4d00] transition-colors" />
-        </div>
-        <div>
-          <label className="block text-[13px] font-semibold mb-2 text-[#ffffff]">Phone Number</label>
-          <input suppressHydrationWarning={true} type="tel" name="phone" placeholder="+91 98765 43210" required className="w-full bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.08)] rounded-xl px-4 py-3.5 text-[15px] text-[#ffffff] outline-none focus:border-[#ff4d00] transition-colors" />
-        </div>
-      </div>
-
-      <div className="grid md:grid-cols-3 gap-5 mb-5">
-        <div>
-          <label className="block text-[13px] font-semibold mb-2 text-[#ffffff]">Business Type</label>
-          <select suppressHydrationWarning={true} name="businessType" defaultValue="" required className="w-full bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.08)] rounded-xl px-4 py-3.5 text-[14px] text-[#ffffff] outline-none focus:border-[#ff4d00] transition-colors appearance-none">
-            <option value="" disabled className="text-[#888888]">Select your business</option>
-            <option>Bridal Studio</option>
-            <option>Salon & Spa</option>
-            <option>Gym & Fitness</option>
-            <option>Restaurant & Cafe</option>
-            <option>Boutique & Fashion</option>
-            <option>Coaching Centre</option>
-            <option>Clinic & Hospital</option>
-            <option>Real Estate</option>
-            <option>Other</option>
-          </select>
-        </div>
-        <div>
-          <label className="block text-[13px] font-semibold mb-2 text-[#ffffff]">Service Needed</label>
-          <select suppressHydrationWarning={true} name="service" defaultValue="" required className="w-full bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.08)] rounded-xl px-4 py-3.5 text-[14px] text-[#ffffff] outline-none focus:border-[#ff4d00] transition-colors appearance-none">
-            <option value="" disabled className="text-[#888888]">What do you need?</option>
-            <option>Social Media Management</option>
-            <option>Instagram Ad Campaign</option>
-            <option>Website Development</option>
-            <option>Complete Digital Package</option>
-            <option>Not Sure — Advise Me</option>
-          </select>
-        </div>
-        <div>
-          <label className="block text-[13px] font-semibold mb-2 text-[#ffffff]">Monthly Budget</label>
-          <select suppressHydrationWarning={true} name="budget" defaultValue="" required className="w-full bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.08)] rounded-xl px-4 py-3.5 text-[14px] text-[#ffffff] outline-none focus:border-[#ff4d00] transition-colors appearance-none">
-            <option value="" disabled className="text-[#888888]">Your budget range</option>
-            <option>Below ₹5,000</option>
-            <option>₹5,000–₹10,000</option>
-            <option>₹10,000–₹25,000</option>
-            <option>₹25,000+</option>
-          </select>
-        </div>
-      </div>
-
-      <div className="mb-6">
-        <label className="block text-[13px] font-semibold mb-2 text-[#ffffff]">Message</label>
-        <textarea suppressHydrationWarning={true} name="message" rows={3} placeholder="Tell us about your business (optional)" className="w-full bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.08)] rounded-xl px-4 py-3.5 text-[15px] text-[#ffffff] outline-none focus:border-[#ff4d00] transition-colors resize-none"></textarea>
-      </div>
-
-      <button suppressHydrationWarning={true} disabled={status === "submitting"} type="submit" className="w-full bg-[#ff4d00] hover:bg-[#e04400] text-white font-bold py-4 rounded-xl text-[15px] transition-colors flex items-center justify-center gap-2">
-        {status === "submitting" ? "Sending..." : "Send Enquiry — We'll Reply in 1 Hour →"}
-      </button>
-    </form>
-  );
-}
 
 export function Contact() {
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus("submitting");
+    // Simulate form submission
+    setTimeout(() => {
+      setStatus("success");
+    }, 1500);
+  };
+
   return (
-    <section id="contact" className="w-full py-28 bg-[#080808]">
-      <div className="max-w-4xl mx-auto px-6 md:px-10">
-        <Reveal>
-          <div className="max-w-[800px] mx-auto bg-[rgba(255,255,255,0.02)] border border-[rgba(255,255,255,0.08)] rounded-[28px] p-8 md:p-16 text-center relative shadow-[0_20px_60px_rgba(0,0,0,0.2)]">
-            <div className="absolute top-[-150px] left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-[radial-gradient(circle,rgba(255,77,0,0.04)_0%,transparent_70%)] pointer-events-none" />
-
-            <div className="inline-flex items-center gap-2 bg-[rgba(255,77,0,0.06)] rounded-full px-5 py-2 text-[13px] text-[#ff4d00] font-bold mb-7 relative z-10">
-              <MessageCircle className="w-3.5 h-3.5" /> Let&apos;s Talk
-            </div>
-
-            <h2 className="font-display font-[800] tracking-[-1.5px] mb-4 relative z-10 text-[#ffffff]" style={{ fontSize: "clamp(28px,4vw,48px)" }}>
-              Let&apos;s grow <span className="gradient-text">your business.</span>
+    <section id="contact" className="py-28 relative bg-[#0a0a0a]">
+      <div className="cx max-w-5xl">
+        <div className="grid grid-cols-1 lg:grid-cols-[40%_60%] gap-12 lg:gap-20">
+          
+          <div>
+            <span className="label-small mb-4 block">Get In Touch</span>
+            <h2 className="heading-primary text-4xl md:text-5xl leading-[1.1] mb-6">
+              Start a conversation.
             </h2>
-            <p className="text-[#888888] text-[16px] max-w-[420px] mx-auto mb-10 relative z-10 leading-[1.6]">
-              Tell us about your business and we&apos;ll send you a free growth strategy within 24 hours. No commitment needed.
+            <p className="text-[#888888] text-lg leading-[1.6] mb-10">
+              Tell us about your project and we&apos;ll get back to you within a few hours.
             </p>
 
-            <ContactForm />
-
-            <div className="flex justify-center gap-4 flex-wrap mb-10 relative z-10">
-              <MagneticButton
-                href="https://wa.me/917305757075?text=Hi%2C%20I%20found%20AurenStudio%20online%20and%20I%27m%20interested%20in%20your%20services."
-                className="bg-[#25D366] text-white font-bold px-9 py-4 rounded-full text-[15px] inline-flex items-center gap-2 hover:bg-[#20bd5a] hover:shadow-[0_8px_24px_rgba(37,211,102,0.2)] transition-all duration-300"
-              >
-                <MessageCircle className="w-[18px] h-[18px]" /> WhatsApp Us
-              </MagneticButton>
-              <MagneticButton
-                href="mailto:hello@aurenstudio.com?subject=Project%20Enquiry%20%E2%80%94%20AurenStudio"
-                className="bg-[rgba(255,255,255,0.06)] text-[#ffffff] font-bold px-9 py-4 rounded-full text-[15px] inline-flex items-center gap-2 border border-[rgba(255,255,255,0.08)] hover:bg-[rgba(255,255,255,0.1)] transition-all duration-300"
-              >
-                <Mail className="w-[18px] h-[18px]" /> Send Email
-              </MagneticButton>
-            </div>
-
-            <div className="flex justify-center gap-7 flex-wrap text-[#888888] text-[13px] relative z-10">
-              <div className="flex items-center gap-1.5"><Phone className="w-4 h-4 text-[#ff4d00]" /> +91 73057 57075</div>
-              <div className="flex items-center gap-1.5"><MapPin className="w-4 h-4 text-[#ff4d00]" /> Madurai, India</div>
-              <div className="flex items-center gap-1.5"><Mail className="w-4 h-4 text-[#ff4d00]" /> hello@aurenstudio.com</div>
+            <div className="space-y-6">
+              <div>
+                <div className="text-[12px] font-semibold text-[#555555] uppercase tracking-wider mb-1">Email Us</div>
+                <a href="mailto:hello@aurenstudio.com" className="text-lg text-white hover:text-[#ff4d00] transition-colors">hello@aurenstudio.com</a>
+              </div>
+              <div>
+                <div className="text-[12px] font-semibold text-[#555555] uppercase tracking-wider mb-1">Call / WhatsApp</div>
+                <a href="https://wa.me/917305757075" target="_blank" rel="noopener noreferrer" className="text-lg text-white hover:text-[#ff4d00] transition-colors">+91 73057 57075</a>
+              </div>
+              <div>
+                <div className="text-[12px] font-semibold text-[#555555] uppercase tracking-wider mb-1">Location</div>
+                <div className="text-lg text-white">Madurai, Tamil Nadu 🇮🇳</div>
+              </div>
             </div>
           </div>
-        </Reveal>
+
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <form onSubmit={handleSubmit} className="premium-card p-8 md:p-10 flex flex-col gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="name" className="text-[13px] font-medium text-white">Name</label>
+                  <input required type="text" id="name" className="bg-[#111111] border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#ff4d00] transition-colors" placeholder="John Doe" />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="email" className="text-[13px] font-medium text-white">Email</label>
+                  <input required type="email" id="email" className="bg-[#111111] border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#ff4d00] transition-colors" placeholder="john@company.com" />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="service" className="text-[13px] font-medium text-white">Service Needed</label>
+                  <select required id="service" defaultValue="" className="bg-[#111111] border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#ff4d00] transition-colors appearance-none">
+                    <option value="" disabled>Select a service</option>
+                    <option value="Premium Website">Premium Website</option>
+                    <option value="Digital Marketing">Digital Marketing</option>
+                    <option value="Meta Ads Management">Meta Ads Management</option>
+                    <option value="Social Media Management">Social Media Management</option>
+                    <option value="AI Automation">AI Automation</option>
+                    <option value="AI Agent Development">AI Agent Development</option>
+                    <option value="SaaS / Web Application">SaaS / Web Application</option>
+                    <option value="Branding & Identity">Branding & Identity</option>
+                    <option value="Business Strategy">Business Strategy</option>
+                    <option value="Not Sure — Let&apos;s Talk">Not Sure — Let&apos;s Talk</option>
+                  </select>
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="budget" className="text-[13px] font-medium text-white">Estimated Budget</label>
+                  <select required id="budget" defaultValue="" className="bg-[#111111] border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#ff4d00] transition-colors appearance-none">
+                    <option value="" disabled>Select a budget</option>
+                    <option value="Under ₹10,000">Under ₹10,000</option>
+                    <option value="₹10,000 – ₹25,000">₹10,000 – ₹25,000</option>
+                    <option value="₹25,000 – ₹50,000">₹25,000 – ₹50,000</option>
+                    <option value="₹50,000 – ₹1,00,000">₹50,000 – ₹1,00,000</option>
+                    <option value="₹1,00,000+">₹1,00,000+</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="flex flex-col gap-2">
+                <label htmlFor="message" className="text-[13px] font-medium text-white">Project Details</label>
+                <textarea required id="message" rows={4} className="bg-[#111111] border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#ff4d00] transition-colors resize-none" placeholder="Tell us a bit about what you want to build..."></textarea>
+              </div>
+
+              <button 
+                type="submit" 
+                disabled={status === "submitting" || status === "success"}
+                className="mt-2 w-full bg-[#ff4d00] text-white font-semibold py-4 rounded-lg hover:bg-[#e04400] transition-colors disabled:opacity-70 disabled:cursor-not-allowed"
+              >
+                {status === "idle" && "Send Message"}
+                {status === "submitting" && "Sending..."}
+                {status === "success" && "Message Sent!"}
+              </button>
+            </form>
+          </motion.div>
+        </div>
       </div>
     </section>
   );

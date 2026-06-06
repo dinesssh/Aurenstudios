@@ -1,59 +1,82 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react";
-import { Reveal, StaggerContainer, StaggerItem } from "@/components/Animations";
-
-const faqs = [
-  { q: "What services do you offer?", a: "We offer web development (Next.js), social media management, Instagram/Facebook ad campaigns, SEO optimisation, and complete digital marketing packages." },
-  { q: "How long does a website take?", a: "A single-page website takes 3–5 days. A multi-page website takes 1–2 weeks depending on complexity." },
-  { q: "Do you manage Instagram accounts?", a: "Yes! We handle everything — posting, stories, reels, hashtags, DM replies, comment management, and monthly reports." },
-  { q: "How do Instagram ads work?", a: "We create targeted ad campaigns shown to your ideal audience. You pay the ad budget directly to Meta — we handle the strategy, creatives, and optimisation." },
-  { q: "Can I see results before committing?", a: "Absolutely. We offer monthly plans with no lock-in contracts. You'll see performance reports and can decide each month." },
-  { q: "Why not use Wix or Squarespace?", a: "Page builders are limited. Our custom-coded websites are faster, rank better on Google, and give you unlimited customisation — no templates." },
-];
 
 export function FAQ() {
-  const [open, setOpen] = useState<number | null>(null);
-  return (
-    <section className="w-full py-28 bg-[#080808]">
-      <div className="max-w-3xl mx-auto px-6 md:px-10">
-        <Reveal><p className="text-[#ff4d00] text-[12px] font-[500] text-center mb-3 uppercase tracking-[0.15em]">FAQ</p></Reveal>
-        <Reveal delay={0.1}>
-          <h2 className="font-display text-center font-[800] tracking-[-2px] leading-[1.05] mb-16 text-[#ffffff]" style={{ fontSize: "clamp(32px,4.5vw,56px)" }}>
-            Got <span className="gradient-text">questions?</span>
-          </h2>
-        </Reveal>
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
 
-        <StaggerContainer className="flex flex-col gap-3" stagger={0.06}>
-          {faqs.map((f, i) => (
-            <StaggerItem key={i}>
-              <div className="bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.08)] rounded-2xl overflow-hidden hover:border-[rgba(255,255,255,0.15)] transition-colors">
-                <button
-                  suppressHydrationWarning={true}
-                  onClick={() => setOpen(open === i ? null : i)}
-                  className="w-full flex items-center justify-between p-6 text-left"
-                >
-                  <span className="font-[600] text-[15px] pr-4 text-[#ffffff]">{f.q}</span>
-                  <motion.div animate={{ rotate: open === i ? 180 : 0 }} transition={{ duration: 0.3 }}>
-                    <ChevronDown className="w-[18px] h-[18px] text-[#888888] flex-shrink-0" />
+  const faqs = [
+    {
+      q: "Are you a large agency or a small team?",
+      a: "We're a small, focused team — and that's intentional. You work directly with the people building your project, not through layers of account managers. This means faster decisions, clearer communication, and better outcomes."
+    },
+    {
+      q: "Do you work with businesses outside Madurai?",
+      a: "Yes. While we're based in Madurai, we work with clients across Tamil Nadu, South India, and remotely with businesses anywhere in India."
+    },
+    {
+      q: "How long does it take to build a website?",
+      a: "Most premium single-page or simple multi-page websites are completed within 7 to 14 days. Complex applications or e-commerce platforms typically take 4 to 8 weeks depending on the requirements."
+    },
+    {
+      q: "Do you offer ongoing support after launch?",
+      a: "Yes, all our plans include an initial support period. After that, we offer affordable retainer packages for maintenance, content updates, and continued performance marketing."
+    },
+    {
+      q: "What makes your websites different from cheap templates?",
+      a: "We custom-code our sites using Next.js and React — the same technology used by companies like Netflix and Notion. This means they are incredibly fast, highly secure, and optimized for both search engines and user conversions."
+    }
+  ];
+
+  return (
+    <section id="faq" className="py-28 relative">
+      <div className="cx max-w-3xl">
+        <div className="text-center mb-16">
+          <h2 className="heading-primary text-4xl md:text-[3.5rem] leading-[1.1] mb-4">
+            Common questions.
+          </h2>
+        </div>
+
+        <div className="space-y-4">
+          {faqs.map((faq, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.3, delay: i * 0.1 }}
+              className="premium-card overflow-hidden"
+            >
+              <button
+                onClick={() => setOpenIndex(openIndex === i ? null : i)}
+                className="w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none"
+              >
+                <span className="text-[16px] font-semibold text-white pr-8">{faq.q}</span>
+                <ChevronDown 
+                  size={20} 
+                  className={`text-[#888888] transition-transform duration-300 shrink-0 ${openIndex === i ? "rotate-180 text-[#ff4d00]" : ""}`} 
+                />
+              </button>
+              
+              <AnimatePresence>
+                {openIndex === i && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                  >
+                    <div className="px-6 pb-6 pt-0 text-[#888888] text-[15px] leading-[1.7]">
+                      {faq.a}
+                    </div>
                   </motion.div>
-                </button>
-                <motion.div
-                  initial={false}
-                  animate={{ height: open === i ? "auto" : 0, opacity: open === i ? 1 : 0 }}
-                  transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] as const }}
-                  className="overflow-hidden"
-                >
-                  <p className="px-6 pb-6 text-[#888888] text-sm leading-[1.7] border-t border-[rgba(255,255,255,0.08)] pt-4 mx-6 mb-0">
-                    {f.a}
-                  </p>
-                </motion.div>
-              </div>
-            </StaggerItem>
+                )}
+              </AnimatePresence>
+            </motion.div>
           ))}
-        </StaggerContainer>
+        </div>
       </div>
     </section>
   );

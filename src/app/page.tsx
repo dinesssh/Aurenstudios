@@ -2,15 +2,15 @@
 
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
+import { HonestBar } from "@/components/HonestBar";
 import { Services } from "@/components/Services";
-import { Industries } from "@/components/Industries";
+import { WhyAuren } from "@/components/WhyAuren";
+import { ProcessSection } from "@/components/ProcessSection";
 import { Portfolio } from "@/components/Portfolio";
-import { Testimonials } from "@/components/Testimonials";
 import { Pricing } from "@/components/Pricing";
-import { Results } from "@/components/Results";
 import { FAQ } from "@/components/FAQ";
-import { About } from "@/components/About";
 import { Contact } from "@/components/Contact";
+import { FinalCTA } from "@/components/FinalCTA";
 import { StickyButtons } from "@/components/StickyButtons";
 import { Footer } from "@/components/Footer";
 
@@ -19,19 +19,17 @@ export default function Home() {
     <>
       <Navbar />
       <Hero />
+      <HonestBar />
       <Services />
-      <Industries />
+      <WhyAuren />
+      <ProcessSection />
       <Portfolio />
-      <Testimonials />
       <Pricing />
-      <Results />
       <FAQ />
-      <About />
+      <FinalCTA />
       <Contact />
       <StickyButtons />
       <Footer />
     </>
   );
 }
-
-

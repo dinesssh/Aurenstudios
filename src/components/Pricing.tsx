@@ -1,72 +1,126 @@
 "use client";
 
-import { CheckCircle2 } from "lucide-react";
-import { Reveal, StaggerContainer, StaggerItem, PremiumCard, MagneticButton } from "@/components/Animations";
+import { motion } from "framer-motion";
+import { Check } from "lucide-react";
 
-const plans = [
-  { name: "Starter", price: "₹8,000", per: "/mo", desc: "Perfect for small businesses starting their digital journey.", pop: false, bestValue: false, feats: ["Single-page website","Social media management","3–4 posts per week","Instagram ad campaign setup","Monthly performance report","WhatsApp & email support"] },
-  { name: "Premium", price: "₹15,000", per: "/mo", desc: "For businesses serious about growth & online dominance.", pop: true, bestValue: false, feats: ["Multi-page website + SEO","Social media management","5–6 posts per week + daily stories","Advanced ad campaigns","Weekly performance reports","Competitor analysis","Google My Business setup","Priority support"] },
-  { name: "Website Only", price: "₹8,000", per: "", desc: "One-time website development. Clean, fast & mobile-ready.", pop: false, bestValue: true, feats: ["Custom designed website","Mobile responsive","Contact form + WhatsApp button","Basic SEO setup","Google Maps integration","1 month free support"] },
-];
 
 export function Pricing() {
-  return (
-    <section id="pricing" className="w-full py-28 bg-[#0d0d0d]">
-      <div className="max-w-7xl mx-auto px-6 md:px-10">
-        <Reveal><p className="text-[#ff4d00] text-[12px] font-[500] text-center mb-3 tracking-[0.15em] uppercase">Pricing</p></Reveal>
-        <Reveal delay={0.1}>
-          <h2 className="font-display text-center font-[800] tracking-[-2px] leading-[1.05] mb-4 text-[#ffffff]" style={{ fontSize: "clamp(32px,4.5vw,56px)" }}>
-            Transparent <span className="gradient-text">pricing.</span>
-          </h2>
-        </Reveal>
-        <Reveal delay={0.15}><p className="text-[#888888] text-[17px] text-center max-w-[500px] mx-auto mb-16">No hidden fees. No surprises. Pick what works for you.</p></Reveal>
+  const tiers = [
+    {
+      name: "Starter",
+      price: "₹9,999+",
+      target: "For businesses ready to go online.",
+      features: [
+        "Professional single-page website",
+        "Mobile responsive design",
+        "WhatsApp integration",
+        "Contact form",
+        "Basic SEO setup",
+        "Google Maps integration",
+        "1 month support"
+      ],
+      cta: "Get Started",
+      style: "border-white/[0.07] bg-white/[0.025]"
+    },
+    {
+      name: "Growth",
+      price: "₹19,999+",
+      target: "For businesses focused on leads and conversions.",
+      badge: "Most Popular",
+      features: [
+        "Multi-page website (up to 6 pages)",
+        "Lead capture system",
+        "SEO foundation + sitemap",
+        "Analytics setup (GA4)",
+        "WhatsApp automation",
+        "Social media setup",
+        "2 months support"
+      ],
+      cta: "Book a Call",
+      style: "border-[#ff4d00]/35 bg-[#ff4d00]/[0.03]"
+    },
+    {
+      name: "Custom Solutions",
+      price: "Let's Talk",
+      target: "For complex digital projects.",
+      badge: "Enterprise",
+      badgeStyle: "bg-white/10 text-white",
+      features: [
+        "SaaS & web applications",
+        "AI agents & automations",
+        "Custom business platforms",
+        "Branding & identity systems",
+        "Ongoing retainer partnerships"
+      ],
+      cta: "Request Proposal",
+      style: "border-white/[0.07] bg-white/[0.025]"
+    }
+  ];
 
-        <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch" stagger={0.12}>
-          {plans.map((p) => (
-            <StaggerItem key={p.name}>
-              <PremiumCard
-                className={`border rounded-[20px] p-10 flex flex-col relative ${
-                  p.pop
-                    ? "bg-[rgba(255,77,0,0.05)] border-[rgba(255,77,0,0.25)]"
-                    : "bg-[rgba(255,255,255,0.03)] border-[rgba(255,255,255,0.08)]"
+  return (
+    <section id="pricing" className="py-28 relative">
+      <div className="cx">
+        <div className="text-center mb-16">
+          <h2 className="heading-primary text-4xl md:text-[3.5rem] leading-[1.1] mb-4">
+            Simple, honest pricing.
+          </h2>
+          <p className="text-[#888888] text-lg max-w-2xl mx-auto">
+            No hidden fees. No lock-in contracts. Just great work.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+          {tiers.map((tier, i) => (
+            <motion.div
+              key={tier.name}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              className={`relative rounded-[16px] border ${tier.style} p-8 flex flex-col transition-all duration-300 hover:-translate-y-1`}
+            >
+              {tier.badge && (
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                  <span className={`px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wide ${tier.badgeStyle || 'bg-[#ff4d00] text-white'}`}>
+                    {tier.badge}
+                  </span>
+                </div>
+              )}
+
+              <div className="mb-6 mt-2">
+                <h3 className="text-xl font-semibold text-white mb-2">{tier.name}</h3>
+                <div className="text-3xl font-bold text-white mb-2">{tier.price}</div>
+                <p className="text-[13px] text-[#ff4d00] font-medium">{tier.target}</p>
+              </div>
+
+              <div className="flex-1 space-y-4 mb-8">
+                {tier.features.map((f, j) => (
+                  <div key={j} className="flex items-start gap-3">
+                    <Check size={18} className="text-[#ff4d00] shrink-0 mt-0.5" />
+                    <span className="text-[14px] text-[#888888]">{f}</span>
+                  </div>
+                ))}
+              </div>
+
+              <a 
+                href="#contact" 
+                className={`w-full text-center py-3.5 px-4 rounded-full text-[14px] font-semibold transition-colors ${
+                  tier.name === "Growth" 
+                    ? "bg-[#ff4d00] text-white hover:bg-[#e04400]" 
+                    : "border border-white/20 text-white hover:border-white/50"
                 }`}
               >
-                {p.pop && (
-                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#ff4d00] text-white text-[11px] font-extrabold px-5 py-1 rounded-full">
-                    Popular
-                  </span>
-                )}
-                {p.bestValue && (
-                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#111] text-white text-[11px] font-extrabold px-5 py-1 rounded-full whitespace-nowrap">
-                    Best Value
-                  </span>
-                )}
-                <h3 className="font-display text-xl font-[700] mb-1 text-[#ffffff]">{p.name}</h3>
-                <p className="text-[#888888] text-sm mb-7">{p.desc}</p>
-                <div className="font-display text-[52px] font-[700] tracking-[-3px] mb-1 text-[#ffffff]">{p.price}</div>
-                <p className="text-[#666666] text-sm mb-8">{p.per ? "per month" : "one-time payment"}</p>
-                <div className="flex flex-col gap-3.5 mb-9 flex-1">
-                  {p.feats.map((f) => (
-                    <div key={f} className="flex items-center gap-3 text-sm text-[#aaaaaa] font-medium">
-                      <CheckCircle2 className="w-[18px] h-[18px] text-[#ff4d00] flex-shrink-0" />
-                      {f}
-                    </div>
-                  ))}
-                </div>
-                <MagneticButton
-                  href="#contact"
-                  className={`block text-center font-bold text-[15px] py-4 rounded-full transition-all duration-300 ${
-                    p.pop
-                      ? "bg-[#ff4d00] text-[#ffffff] hover:bg-[#e64500]"
-                      : "bg-[rgba(255,255,255,0.06)] text-[#ffffff] border border-[rgba(255,255,255,0.08)] hover:bg-[rgba(255,255,255,0.1)]"
-                  }`}
-                >
-                  Get Started
-                </MagneticButton>
-              </PremiumCard>
-            </StaggerItem>
+                {tier.cta}
+              </a>
+            </motion.div>
           ))}
-        </StaggerContainer>
+        </div>
+
+        <div className="mt-12 text-center max-w-2xl mx-auto">
+          <p className="text-[12px] text-[#555555] leading-[1.6]">
+            + All prices exclude GST. Ad budgets are paid directly to platforms (Meta, Google). Custom project pricing on consultation.
+          </p>
+        </div>
       </div>
     </section>
   );
