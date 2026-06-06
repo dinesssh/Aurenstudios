@@ -4,9 +4,9 @@ import { ExternalLink } from "lucide-react";
 import { Reveal, StaggerContainer, StaggerItem, PremiumCard, ParallaxImage } from "@/components/Animations";
 
 const projects = [
-  { title: "IronForge Gym", cat: "Web Development", desc: "Premium fitness studio website — programs, trainers, schedule & booking system.", img: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&q=80", link: "#" },
-  { title: "Aura Interiors", cat: "Web Dev + Branding", desc: "Luxury interior design studio — portfolio gallery, services & client testimonials.", img: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800&q=80", link: "#" },
-  { title: "Bridal Studio", cat: "Web Dev + SMM + Ads", desc: "Premium bridal MUA portfolio — gallery, booking calendar & WhatsApp integration.", img: "https://images.unsplash.com/photo-1487530811176-3780de880c2d?w=800&q=80", link: "#" },
+  { title: "IronForge Gym", cat: "Web Development", desc: "Premium fitness studio website — programs, trainers, schedule & booking system.", img: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&q=80", link: "demos/ironforge/index.html" },
+  { title: "Aura Interiors", cat: "Web Dev + Branding", desc: "Luxury interior design studio — portfolio gallery, services & client testimonials.", img: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800&q=80", link: "demos/aura/index.html" },
+  { title: "Bridal Studio", cat: "Web Dev + SMM + Ads", desc: "Premium bridal MUA portfolio — gallery, booking calendar & WhatsApp integration.", img: "https://images.unsplash.com/photo-1487530811176-3780de880c2d?w=800&q=80", link: "demos/bridal/index.html" },
 ];
 
 export function Portfolio() {
@@ -23,16 +23,23 @@ export function Portfolio() {
         <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-6" stagger={0.15}>
           {projects.map((p) => (
             <StaggerItem key={p.title}>
-              <PremiumCard className="bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.08)] rounded-3xl overflow-hidden group">
-                <div className="h-[220px] relative">
-                  <ParallaxImage src={p.img} alt={p.title} className="h-full" speed={0.08} />
-                </div>
-                <div className="p-7">
-                  <span className="text-[11px] text-[#ff4d00] font-bold tracking-[1px] uppercase">{p.cat}</span>
-                  <h3 className="font-display text-xl font-bold tracking-[-0.3px] mt-1.5 mb-1.5 text-[#ffffff]">{p.title}</h3>
-                  <p className="text-[#888888] text-sm leading-[1.6]">{p.desc}</p>
-                </div>
-              </PremiumCard>
+              <a href={p.link} target="_blank" rel="noopener noreferrer" aria-label={`View ${p.title} Demo`}>
+                <PremiumCard className="bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.08)] rounded-3xl overflow-hidden cursor-pointer group">
+                  <div className="h-[220px] relative">
+                    <ParallaxImage src={p.img} alt={p.title} className="h-full" speed={0.08} />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-500 flex items-center justify-center">
+                      <span className="bg-white text-[#111] font-bold text-sm px-6 py-3 rounded-full opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 flex items-center gap-2 shadow-lg">
+                        <ExternalLink className="w-4 h-4" /> View Live Demo
+                      </span>
+                    </div>
+                  </div>
+                  <div className="p-7">
+                    <span className="text-[11px] text-[#ff4d00] font-bold tracking-[1px] uppercase">{p.cat}</span>
+                    <h3 className="font-display text-xl font-bold tracking-[-0.3px] mt-1.5 mb-1.5 text-[#ffffff]">{p.title}</h3>
+                    <p className="text-[#888888] text-sm leading-[1.6]">{p.desc}</p>
+                  </div>
+                </PremiumCard>
+              </a>
             </StaggerItem>
           ))}
         </StaggerContainer>
