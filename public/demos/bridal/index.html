@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura | Premium Bridal MUA Portfolio</title>
+    
+    <!-- Google Fonts: Playfair Display (Serif) & Montserrat (Sans-serif) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="logo">Aura</h1>
+            <h2 class="hero-title">Flawless Bridal Transformations</h2>
+            <p class="hero-subtitle">Madurai's Premier Luxury Makeup Artistry</p>
+            <a href="#booking" class="btn btn-primary">Book Your Date <i class="fa-regular fa-calendar-check"></i></a>
+        </div>
+        <div class="scroll-indicator">
+            <a href="#portfolio"><i class="fa-solid fa-chevron-down"></i></a>
+        </div>
+    </header>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio-section">
+        <div class="container">
+            <h2 class="section-title">The Bridal Collection</h2>
+            <p class="section-subtitle">Curated looks for every moment of your special day.</p>
+            
+            <!-- Category Filter -->
+            <div class="filter-container">
+                <button class="filter-btn active" data-filter="all">All Looks</button>
+                <button class="filter-btn" data-filter="muhurtham">Muhurtham</button>
+                <button class="filter-btn" data-filter="reception">Reception</button>
+                <button class="filter-btn" data-filter="details">Details</button>
+            </div>
+
+            <!-- Masonry Grid -->
+            <div class="masonry-grid">
+                
+                <!-- Item 1 -->
+                <div class="grid-item muhurtham">
+                    <img src="assets/images/muhurtham.png" alt="Traditional South Indian Muhurtham Look">
+                    <div class="item-overlay">
+                        <div class="overlay-content">
+                            <h3>Traditional Silk</h3>
+                            <p>Muhurtham Look</p>
+                            <a href="https://wa.me/919876543210?text=Hello%20Aura%21%20I%20love%20the%20Traditional%20Silk%20Muhurtham%20Look%20from%20your%20portfolio.%20I%20would%20like%20to%20check%20your%20availability." target="_blank" class="btn btn-whatsapp"><i class="fa-brands fa-whatsapp"></i> Inquire</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="grid-item reception">
+                    <img src="assets/images/reception.png" alt="Glamorous Reception Makeup">
+                    <div class="item-overlay">
+                        <div class="overlay-content">
+                            <h3>Modern Glamour</h3>
+                            <p>Reception Look</p>
+                            <a href="https://wa.me/919876543210?text=Hello%20Aura%21%20I%20love%20the%20Modern%20Glamour%20Reception%20Look%20from%20your%20portfolio.%20I%20would%20like%20to%20check%20your%20availability." target="_blank" class="btn btn-whatsapp"><i class="fa-brands fa-whatsapp"></i> Inquire</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="grid-item details">
+                    <img src="assets/images/eyes.png" alt="Bridal Eye Makeup Close-up">
+                    <div class="item-overlay">
+                        <div class="overlay-content">
+                            <h3>Golden Halo</h3>
+                            <p>Eye Details</p>
+                            <a href="https://wa.me/919876543210?text=Hello%20Aura%21%20I%20love%20the%20Golden%20Halo%20Eye%20Details%20from%20your%20portfolio.%20I%20would%20like%20to%20check%20your%20availability." target="_blank" class="btn btn-whatsapp"><i class="fa-brands fa-whatsapp"></i> Inquire</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 4 -->
+                <div class="grid-item details">
+                    <img src="assets/images/hair.png" alt="Bridal Hair Styling">
+                    <div class="item-overlay">
+                        <div class="overlay-content">
+                            <h3>Floral Cascade</h3>
+                            <p>Hair Styling</p>
+                            <a href="https://wa.me/919876543210?text=Hello%20Aura%21%20I%20love%20the%20Floral%20Cascade%20Hair%20Styling%20from%20your%20portfolio.%20I%20would%20like%20to%20check%20your%20availability." target="_blank" class="btn btn-whatsapp"><i class="fa-brands fa-whatsapp"></i> Inquire</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Section (Calendly Embed) -->
+    <section id="booking" class="booking-section">
+        <div class="container">
+            <h2 class="section-title">Reserve Your Date</h2>
+            <p class="section-subtitle">Select an available time for a consultation or directly block your wedding date.</p>
+            
+            <div class="calendly-container">
+                <!-- Calendly inline widget begin -->
+                <div class="calendly-inline-widget" data-url="https://calendly.com/your-calendly-link/30min" style="min-width:320px;height:700px;"></div>
+                <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+                <!-- Calendly inline widget end -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="logo footer-logo">Aura</p>
+            <p>&copy; 2026 Aura Premium Makeup Artistry. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
