@@ -16,6 +16,12 @@ const nextConfig: NextConfig = {
   assetPrefix: assetPrefix,
   images: {
     unoptimized: !!isGithubActions,
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+      },
+    ],
   },
   turbopack: {
     root: ".",
