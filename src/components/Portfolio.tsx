@@ -23,23 +23,16 @@ export function Portfolio() {
         <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-6" stagger={0.15}>
           {projects.map((p) => (
             <StaggerItem key={p.title}>
-              <a href={p.link} target={p.link.startsWith("#") ? "_self" : "_blank"} rel="noopener noreferrer" aria-label={`View ${p.title} Demo`}>
-                <PremiumCard className="bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.08)] rounded-3xl overflow-hidden cursor-pointer group">
-                  <div className="h-[220px] relative">
-                    <ParallaxImage src={p.img} alt={p.title} className="h-full" speed={0.08} />
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-500 flex items-center justify-center">
-                      <span className="bg-white text-[#111] font-bold text-sm px-6 py-3 rounded-full opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 flex items-center gap-2 shadow-lg">
-                        <ExternalLink className="w-4 h-4" /> View Live Demo
-                      </span>
-                    </div>
-                  </div>
-                  <div className="p-7">
-                    <span className="text-[11px] text-[#ff4d00] font-bold tracking-[1px] uppercase">{p.cat}</span>
-                    <h3 className="font-display text-xl font-bold tracking-[-0.3px] mt-1.5 mb-1.5 text-[#ffffff]">{p.title}</h3>
-                    <p className="text-[#888888] text-sm leading-[1.6]">{p.desc}</p>
-                  </div>
-                </PremiumCard>
-              </a>
+              <PremiumCard className="bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.08)] rounded-3xl overflow-hidden group">
+                <div className="h-[220px] relative">
+                  <ParallaxImage src={p.img} alt={p.title} className="h-full" speed={0.08} />
+                </div>
+                <div className="p-7">
+                  <span className="text-[11px] text-[#ff4d00] font-bold tracking-[1px] uppercase">{p.cat}</span>
+                  <h3 className="font-display text-xl font-bold tracking-[-0.3px] mt-1.5 mb-1.5 text-[#ffffff]">{p.title}</h3>
+                  <p className="text-[#888888] text-sm leading-[1.6]">{p.desc}</p>
+                </div>
+              </PremiumCard>
             </StaggerItem>
           ))}
         </StaggerContainer>
