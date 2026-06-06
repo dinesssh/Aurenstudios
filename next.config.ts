@@ -11,9 +11,11 @@ if (isGithubActions) {
 }
 
 const nextConfig: NextConfig = {
-  ...(isGithubActions ? { output: "export" } : {}),
-  basePath: basePath,
-  assetPrefix: assetPrefix,
+  ...(isGithubActions ? {
+    output: "export",
+    basePath: basePath,
+    assetPrefix: assetPrefix,
+  } : {}),
   images: {
     unoptimized: !!isGithubActions,
     remotePatterns: [
