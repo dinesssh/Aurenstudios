@@ -1,11 +1,11 @@
 import type { NextConfig } from "next";
 
 const isGithubActions = process.env.GITHUB_ACTIONS || false;
-const repo = "agency";
 let assetPrefix = "";
 let basePath = "";
 
 if (isGithubActions) {
+  const repo = process.env.GITHUB_REPOSITORY?.split('/')[1] || "Aurenstudios";
   assetPrefix = `/${repo}/`;
   basePath = `/${repo}`;
 }

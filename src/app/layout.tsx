@@ -10,9 +10,9 @@ export const metadata: Metadata = {
   description: "AurenStudio helps local businesses in Madurai grow with targeted Instagram ad campaigns, custom-coded websites, social media management & local SEO. Real results in 7 days. Call +91 73057 57075.",
   keywords: "digital marketing madurai, instagram ads madurai, web development madurai, social media management madurai, SEO madurai, bridal studio marketing, salon digital marketing madurai",
   openGraph: {
-    title: "AurenStudio — Digital Growth for Madurai Businesses",
-    description: "Instagram ads, custom websites & social media management for local businesses in Madurai & South Tamil Nadu. Starting ₹8,000/month.",
-    url: "https://dinesssh.github.io/agency",
+    title: "AurenStudio — Premium Digital Marketing & Web Development",
+    description: "Transforming businesses into brands. Premium web development, Instagram ads, and branding services based in Madurai.",
+    url: "https://dinesssh.github.io/Aurenstudios",
     siteName: "AurenStudio",
     locale: "en_IN",
     type: "website",
@@ -40,7 +40,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`dark ${inter.variable} ${space.variable}`}>
       <head>
-        <link rel="canonical" href="https://dinesssh.github.io/agency" />
+        <link rel="canonical" href="https://dinesssh.github.io/Aurenstudios" />
         <meta name="geo.region" content="IN-TN" />
         <meta name="geo.placename" content="Madurai" />
         <meta name="geo.position" content="9.9252;78.1198" />
