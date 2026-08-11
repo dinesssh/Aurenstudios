@@ -30,13 +30,20 @@ export function Contact() {
             </p>
 
             <div className="space-y-6">
-              <div>
-                <div className="text-[12px] font-semibold text-[#555555] uppercase tracking-wider mb-1">Email Us</div>
-                <a href="mailto:hello@aurenstudio.com" className="text-lg text-white hover:text-[#ff4d00] transition-colors">hello@aurenstudio.com</a>
-              </div>
-              <div>
-                <div className="text-[12px] font-semibold text-[#555555] uppercase tracking-wider mb-1">Call / WhatsApp</div>
-                <a href="https://wa.me/917305757075" target="_blank" rel="noopener noreferrer" className="text-lg text-white hover:text-[#ff4d00] transition-colors">+91 73057 57075</a>
+              <div className="p-4 rounded-xl bg-white/[0.03] border border-white/10 hover:border-[#ff4d00]/50 transition-colors">
+                <div className="text-[11px] font-bold text-[#ff4d00] uppercase tracking-wider mb-2 flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-[#ff4d00] inline-block animate-pulse"></span>
+                  Manager Contact
+                </div>
+                <div className="text-xl font-semibold text-white mb-1">Siva Suthan</div>
+                <a 
+                  href="https://wa.me/919677329969" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="inline-flex items-center gap-2 text-base text-[#ff4d00] hover:underline font-mono"
+                >
+                  +91 96773 29969
+                </a>
               </div>
               <div>
                 <div className="text-[12px] font-semibold text-[#555555] uppercase tracking-wider mb-1">Location</div>
@@ -55,18 +62,18 @@ export function Contact() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="flex flex-col gap-2">
                   <label htmlFor="name" className="text-[13px] font-medium text-white">Name</label>
-                  <input required type="text" id="name" className="bg-[#111111] border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#ff4d00] transition-colors" placeholder="John Doe" />
+                  <input suppressHydrationWarning required type="text" id="name" className="bg-[#111111] border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#ff4d00] transition-colors" placeholder="Your Name" />
                 </div>
                 <div className="flex flex-col gap-2">
                   <label htmlFor="email" className="text-[13px] font-medium text-white">Email</label>
-                  <input required type="email" id="email" className="bg-[#111111] border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#ff4d00] transition-colors" placeholder="john@company.com" />
+                  <input suppressHydrationWarning required type="email" id="email" className="bg-[#111111] border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#ff4d00] transition-colors" placeholder="your.email@domain.com" />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="flex flex-col gap-2">
                   <label htmlFor="service" className="text-[13px] font-medium text-white">Service Needed</label>
-                  <select required id="service" defaultValue="" className="bg-[#111111] border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#ff4d00] transition-colors appearance-none">
+                  <select suppressHydrationWarning required id="service" defaultValue="" className="bg-[#111111] border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#ff4d00] transition-colors appearance-none">
                     <option value="" disabled>Select a service</option>
                     <option value="Premium Website">Premium Website</option>
                     <option value="Digital Marketing">Digital Marketing</option>
@@ -82,7 +89,7 @@ export function Contact() {
                 </div>
                 <div className="flex flex-col gap-2">
                   <label htmlFor="budget" className="text-[13px] font-medium text-white">Estimated Budget</label>
-                  <select required id="budget" defaultValue="" className="bg-[#111111] border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#ff4d00] transition-colors appearance-none">
+                  <select suppressHydrationWarning required id="budget" defaultValue="" className="bg-[#111111] border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#ff4d00] transition-colors appearance-none">
                     <option value="" disabled>Select a budget</option>
                     <option value="Under ₹10,000">Under ₹10,000</option>
                     <option value="₹10,000 – ₹25,000">₹10,000 – ₹25,000</option>
@@ -95,10 +102,11 @@ export function Contact() {
 
               <div className="flex flex-col gap-2">
                 <label htmlFor="message" className="text-[13px] font-medium text-white">Project Details</label>
-                <textarea required id="message" rows={4} className="bg-[#111111] border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#ff4d00] transition-colors resize-none" placeholder="Tell us a bit about what you want to build..."></textarea>
+                <textarea suppressHydrationWarning required id="message" rows={4} className="bg-[#111111] border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#ff4d00] transition-colors resize-none" placeholder="Describe your project requirements..."></textarea>
               </div>
 
               <button 
+                suppressHydrationWarning
                 type="submit" 
                 disabled={status === "submitting" || status === "success"}
                 className="mt-2 w-full bg-[#ff4d00] text-white font-semibold py-4 rounded-lg hover:bg-[#e04400] transition-colors disabled:opacity-70 disabled:cursor-not-allowed"

@@ -51,10 +51,16 @@ export function Footer() {
 
           <div>
             <h4 className="text-white font-semibold mb-6">Contact</h4>
-            <ul className="space-y-3 text-[14px] text-[#888888]">
-              <li><a href="tel:+917305757075" className="hover:text-white transition-colors">+91 73057 57075</a></li>
-              <li><a href="mailto:hello@aurenstudio.com" className="hover:text-white transition-colors">hello@aurenstudio.com</a></li>
-              <li><a href="https://wa.me/917305757075" target="_blank" rel="noopener noreferrer" className="hover:text-[#25D366] transition-colors">WhatsApp Us</a></li>
+            <ul className="space-y-4 text-[14px] text-[#888888]">
+              <li>
+                <span className="block text-[11px] font-semibold text-[#555555] uppercase tracking-wider mb-1">Manager (Siva Suthan)</span>
+                <a href="tel:+919677329969" className="hover:text-[#ff4d00] text-white transition-colors block text-base font-mono">+91 96773 29969</a>
+              </li>
+              <li>
+                <a href="https://wa.me/919677329969" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#25D366]/10 text-[#25D366] hover:bg-[#25D366]/20 text-[13px] transition-colors">
+                  WhatsApp Manager
+                </a>
+              </li>
             </ul>
           </div>
 

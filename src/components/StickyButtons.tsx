@@ -21,8 +21,8 @@ export function StickyButtons() {
       className="fixed bottom-7 right-7 z-40 flex flex-col gap-3"
     >
       <MagneticButton
-        href="https://wa.me/917305757075"
-        aria-label="WhatsApp Us"
+        href="https://wa.me/919677329969"
+        aria-label="WhatsApp Manager"
         className="w-[52px] h-[52px] bg-[#25D366] rounded-full flex items-center justify-center shadow-[0_6px_20px_rgba(0,0,0,0.1)] text-white"
         strength={0.4}
       >

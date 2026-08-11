@@ -28,7 +28,7 @@ export function WhyAuren() {
   ];
 
   return (
-    <section className="py-28 relative bg-[#0a0a0a]">
+    <section id="about" className="py-28 relative bg-[#0a0a0a]">
       <div className="cx">
         <div className="text-center mb-16">
           <h2 className="heading-primary text-4xl md:text-[3.5rem] leading-[1.1] mb-4">

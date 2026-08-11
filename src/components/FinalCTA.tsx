@@ -34,12 +34,12 @@ export function FinalCTA() {
                 <MoveRight size={18} />
               </a>
               <a 
-                href="https://wa.me/917305757075" 
+                href="https://wa.me/919677329969" 
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto border border-white/20 text-white px-8 py-4 rounded-full font-semibold hover:bg-white/5 transition-colors flex items-center justify-center"
               >
-                WhatsApp Us
+                WhatsApp Manager
               </a>
             </div>
             
